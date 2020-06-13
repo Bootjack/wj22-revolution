@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody",
+"class": "Character",
+"language": "GDScript",
+"path": "res://scripts/Character.gd"
+}, {
 "base": "Control",
 "class": "TimerDisplay",
 "language": "GDScript",
 "path": "res://scripts/Timer.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
 "TimerDisplay": ""
 }
 
