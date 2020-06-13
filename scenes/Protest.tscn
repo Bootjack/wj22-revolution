@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Timer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Protest.gd" type="Script" id=2]
 
 [sub_resource type="Environment" id=1]
 
@@ -8,6 +11,8 @@ subdivide_width = 20
 subdivide_depth = 20
 
 [node name="Protest" type="Spatial"]
+pause_mode = 1
+script = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -21,3 +26,5 @@ transform = Transform( 0.573919, 0.573962, -0.584109, 0, 0.713275, 0.700884, 0.8
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
 material/0 = null
+
+[node name="Timer" parent="." instance=ExtResource( 1 )]
