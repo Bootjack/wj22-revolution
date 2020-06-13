@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Environment" id=1]
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 20, 20 )
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="Protest" type="Spatial"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 10, 5 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.573919, 0.573962, -0.584109, 0, 0.713275, 0.700884, 0.818912, -0.402251, 0.409362, 0, 10.0255, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
