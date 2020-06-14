@@ -1,36 +1,39 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Timer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Protest.gd" type="Script" id=2]
+[ext_resource path="res://scripts/CrowdNavigationComputer.gd" type="Script" id=3]
 
-[sub_resource type="ProceduralSky" id=5]
+[sub_resource type="ProceduralSky" id=1]
 sun_color = Color( 1, 0.964706, 0.721569, 1 )
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=2]
 background_mode = 2
-background_sky = SubResource( 5 )
+background_sky = SubResource( 1 )
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="CubeMesh" id=3]
 size = Vector3( 20, 1, 20 )
 subdivide_width = 20
 subdivide_height = 4
 subdivide_depth = 20
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.482353, 0.482353, 0.482353, 1 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -10, 0.5, 10, 10, 0.5, -10, 10, 0.5, 10, -10, 0.5, -10, -10, -0.5, 10, 10, -0.5, -10, 10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, 0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, -10, -10, -0.5, 10, 10, 0.5, 10, -10, -0.5, 10, -10, 0.5, 10, 10, -0.5, 10, 10, 0.5, -10, -10, -0.5, -10, -10, 0.5, -10, 10, -0.5, -10 )
+
+[sub_resource type="NavigationMesh" id=6]
 
 [node name="Protest" type="Spatial"]
 pause_mode = 1
 script = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 2 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 10, 5 )
+transform = Transform( 1, 0, 0, 0, 0.78903, 0.614354, 0, -0.614354, 0.78903, 0, 8.49058, 14.7335 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642747, 0.766078, 0, -0.766078, 0.642747, 0, 10.0255, 0 )
@@ -46,8 +49,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0 )
 collision_layer = 3
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain"]
-mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain"]
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+
+[node name="Navigation" type="Navigation" parent="."]
+script = ExtResource( 3 )
+
+[node name="NavMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
+navmesh = SubResource( 6 )
+
+[node name="Visualization" type="MeshInstance" parent="Navigation"]
+visible = false

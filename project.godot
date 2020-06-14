@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Character.gd"
 }, {
+"base": "Navigation",
+"class": "CrowdNavigationComputer",
+"language": "GDScript",
+"path": "res://scripts/CrowdNavigationComputer.gd"
+}, {
+"base": "Node",
+"class": "MoraleComputer",
+"language": "GDScript",
+"path": "res://scripts/MoraleComputer.gd"
+}, {
 "base": "Node",
 "class": "MovementComputer",
 "language": "GDScript",
@@ -36,6 +46,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Character": "",
+"CrowdNavigationComputer": "",
+"MoraleComputer": "",
 "MovementComputer": "",
 "Protestor": "",
 "TimeComputer": "",
