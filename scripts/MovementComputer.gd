@@ -2,17 +2,27 @@ class_name MovementComputer
 extends Node
 
 var destination:Vector3 = Vector3.ZERO
+var energy_spent = 0.0
 var force:float = 100.0
 var top_speed:float = 10.0
 
 var rigid:RigidBody
-	
+
+func get_class():
+	return "MovementComputer"
+
+func is_class(name:String):
+	return name == "MovementComputer" || .is_class(name)
+
 func calculate_impulse(time_delta:float):
 	var available_impulse = force * time_delta
 	var velocity_delta = calculate_velocity_delta()
 	var available_speed_delta = available_impulse / rigid.mass
 	var speed = min(velocity_delta.length(), available_speed_delta)
-	return rigid.mass * velocity_delta.normalized()
+	return {
+		"energy": 0.5 * rigid.mass * pow(speed, 2),
+		"impulse": rigid.mass * velocity_delta.normalized()
+	}
 	
 func calculate_velocity_delta():
 	var destination_direction = rigid.global_transform.origin.direction_to(destination)
