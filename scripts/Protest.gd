@@ -7,7 +7,7 @@ var protestor_res = preload("res://scenes/Protestor.tscn")
 var protestors = []
 var ray:RayCast
 var rng = RandomNumberGenerator.new()
-var size:int = 5
+var size:int = 20
 var suggested_location:Vector3
 var time_computer:TimeComputer
 var sunrise_time = 5.5 * 60 * 60
@@ -49,6 +49,8 @@ func add_protestor():
 	protestor.mass = rand_range(65, 90)
 	protestor.protestors = protestors
 	protestor.top_speed = rand_range(3, 6)
+	protestor.set_skin_tone(rng.randfn(0.5, 0.2))
+	protestor.set_shirt_color(rng.randfn(0.5, 0.2))
 	protestors.append(protestor)
 	add_child(protestor)
 

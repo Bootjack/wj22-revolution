@@ -37,3 +37,11 @@ func _physics_process(delta):
 func set_destination(dest:Vector3):
 	destination = dest
 	movement_computer.set_destination(dest)
+
+func set_skin_tone(val:float):
+	var mat = $Meshes/Torso.get_surface_material(0).duplicate()
+	mat.set_shader_param("skin_tone", val)
+	$Meshes/Torso.set_surface_material(0, mat)
+	$Meshes/Head.set_surface_material(0, mat)
+	$Meshes/HandLeft.set_surface_material(0, mat)
+	$Meshes/HandRight.set_surface_material(0, mat)

@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Protestor.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "TimeComputer",
 "language": "GDScript",
 "path": "res://scripts/TimeComputer.gd"
@@ -63,4 +63,5 @@ select_location={
 
 [rendering]
 
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

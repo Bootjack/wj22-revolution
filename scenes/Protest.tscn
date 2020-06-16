@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Timer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Protest.gd" type="Script" id=2]
 
+[sub_resource type="ProceduralSky" id=5]
+sun_color = Color( 1, 0.964706, 0.721569, 1 )
+
 [sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 5 )
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 20, 1, 20 )
@@ -11,7 +16,10 @@ subdivide_width = 20
 subdivide_height = 4
 subdivide_depth = 20
 
-[sub_resource type="ConvexPolygonShape" id=3]
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.482353, 0.482353, 0.482353, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( -10, 0.5, 10, 10, 0.5, -10, 10, 0.5, 10, -10, 0.5, -10, -10, -0.5, 10, 10, -0.5, -10, 10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, 0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, -10, -10, -0.5, 10, 10, 0.5, 10, -10, -0.5, 10, -10, 0.5, 10, 10, -0.5, 10, 10, 0.5, -10, -10, -0.5, -10, -10, 0.5, -10, 10, -0.5, -10 )
 
 [node name="Protest" type="Spatial"]
@@ -25,7 +33,10 @@ environment = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.34202, 0.939693, 0, -0.939693, 0.34202, 0, 10, 5 )
 
 [node name="Sun" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.0255, 0 )
+transform = Transform( 1, 0, 0, 0, 0.642747, 0.766078, 0, -0.766078, 0.642747, 0, 10.0255, 0 )
+light_energy = 1.5
+light_indirect_energy = 2.0
+light_specular = 0.78
 shadow_enabled = true
 
 [node name="TimeDisplay" parent="." instance=ExtResource( 1 )]
@@ -36,7 +47,7 @@ collision_layer = 3
 
 [node name="MeshInstance" type="MeshInstance" parent="Terrain"]
 mesh = SubResource( 2 )
-material/0 = null
+material/0 = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Terrain"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
