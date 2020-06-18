@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/Oxygen_Mono/OxygenMono-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/StoryCard.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="StoryCard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 200 )
+color = Color( 0.0627451, 0.203922, 0.207843, 0.670588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="RichTextLabel" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 17.8947
+margin_right = -20.0
+margin_bottom = -60.0
+custom_fonts/normal_font = SubResource( 1 )
+meta_underlined = false
+tab_size = 1
+text = "You have decided to stand up and make your voice heard."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_hover = Color( 0.588235, 1, 0.976471, 1 )
+text = "OKAY"
+flat = true

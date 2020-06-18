@@ -1,12 +1,15 @@
 class_name Character
 extends RigidBody
 
-var destination:Vector3 = Vector3.ZERO
+var destination:Vector3
+var elapsed_time = 0.0
 var energy = 100.0
 var force:float = 50.0
 var global_path:PoolVector3Array
 var movement_computer:MovementComputer
 var nav_computer:CrowdNavigationComputer
+var phase = 1
+var rng:RandomNumberGenerator
 var top_speed:float = 5.0
 var urgency = 0.5
 
@@ -25,13 +28,20 @@ func _init():
 	movement_computer = MovementComputer.new()
 	movement_computer.set_force(force)
 	movement_computer.set_rigid_body(self)
+	
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
 
 func _ready():
-	pass
+	destination = global_transform.origin
 
 func _process(delta):
+	elapsed_time += delta
+	if (int(elapsed_time * 10) % phase > 0):
+		return
+
 	movement_computer.set_top_speed(top_speed * urgency)
-	if ($Path && global_path):
+	if (global_path && $Path):
 		$Path.clear()
 		$Path.begin(Mesh.PRIMITIVE_LINE_STRIP, null)
 		for vertex in global_path:
